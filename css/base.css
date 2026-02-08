@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Georgia", serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(circle at top, #fdfaf5, #f4eee6);
+
+  position: relative;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.card {
+  background: #fff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  width: 280px;
+}
+
+.memory-title {
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+  color: #666;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.memory-title::after {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: #ccc;
+  display: block;
+  margin: 10px auto 0;
+}
+
+  .hint {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.soft-divider {
+  width: 36px;
+  height: 1px;
+  background: #e6e6e6;
+  margin: 12px auto;
+}
+
+.success {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
+.subtitle {
+  font-size: 12px;
+  color: #999;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  text-align: center;
+}
+
+button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  background: #ede6db;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #e0d6c8;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,240,200,.8) 1px, transparent 2px),
+    radial-gradient(circle, rgba(220,230,255,.8) 1px, transparent 2px);
+
+  background-size:
+    140px 140px,
+    180px 180px,
+    220px 220px;
+
+  background-position:
+    0 0,
+    60px 120px,
+    100px 40px;
+
+  animation: sparkleMove 22s linear infinite;
+}
+
+@keyframes sparkleMove {
+  from {
+    background-position:
+      0 0,
+      60px 120px,
+      100px 40px;
+  }
+  to {
+    background-position:
+      200px 400px,
+      260px 520px,
+      320px 480px;
+  }
+}
+
+@keyframes sparklePulse {
+  0%, 100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+body::before {
+  animation:
+    sparkleMove 22s linear infinite,
+    sparklePulse 4s ease-in-out infinite;
+}
