@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sampai Di Sini</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/final.css">
+</head>
+<body>
+
+<div class="final-wrap">
+  <p id="typing" class="final-text"></p>
+
+  <img src="assets/foryou.png"
+       alt="dia"
+       class="final-photo hidden">
+</div>
+
+<canvas id="confetti"></canvas>
+
+<audio id="bgMusic" src="assets/music2.mp3" loop></audio>
+
+<!-- SCRIPT DI SINI -->
+<script>
+/* ===== ELEMENT ===== */
+const typingEl = document.getElementById("typing");
+const photo = document.querySelector(".final-photo");
+const music = document.getElementById("bgMusic");
+
+/* ===== TEKS ===== */
+const text = `
+Kalau kamu sampai di sini,
+artinya kamu sudah membaca semuanya.
+
+Aku cuma mau bilang,
+terima kasih sudah ada,
+dengan caramu sendiri.
+
+— dari seseorang
+yang mungkin tidak selalu terlihat.
+`;
+
+let i = 0;
+
+/* ===== MUSIC (SETELAH TAP) ===== */
+document.body.addEventListener("click", () => {
+  music.play().catch(()=>{});
+}, { once:true });
+
+/* ===== TYPING ===== */
+function typeText(){
+  if(i < text.length){
+    typingEl.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+    i++;
+    setTimeout(typeText, 50);
+  } else {
+    showPhoto();
+  }
+}
+
+/* ===== SHOW PHOTO ===== */
+function showPhoto(){
+  photo.classList.remove("hidden");
+  requestAnimationFrame(() => {
+    photo.classList.add("show");
+  });
+}
+
+/* ===== CONFETTI ===== */
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+const pieces = Array.from({length:120}).map(()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*4+2,
+  d:Math.random()*1+0.5
+}));
+
+(function confetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="#d4a373";
+    ctx.fill();
+    p.y+=p.d;
+    if(p.y>canvas.height) p.y=-10;
+  });
+  requestAnimationFrame(confetti);
+})();
+
+/* ===== START ===== */
+typeText();
+</script>
+
+</body>
+</html>
