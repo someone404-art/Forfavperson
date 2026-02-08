@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  background: #f8f4ec;
+  font-family: serif;
+}
+
+.final-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  gap: 20px;
+}
+
+.final-text {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ⬇️ INI YANG PENTING */
+.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.final-photo {
+  width: 180px;
+  max-width: 70%;
+  border-radius: 6px;
+  background: white;
+  padding: 10px 10px 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+  z-index: 1;
+}
+
+.final-photo.show {
+  opacity: 1;
+  transform: translateY(0);
+}
